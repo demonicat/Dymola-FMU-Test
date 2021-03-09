@@ -13,8 +13,9 @@ public class DroneMovement : MonoBehaviour
     {
         //Instantiate the FMU
         fmu = new FMU("DroneSimulation_IdealMachine", name);
-        //Set target goal
+        fmu.Reset();
         fmu.SetupExperiment(Time.time);
+        //Set target goal
         setCoord(coord[0], coord[1], coord[2]);
         fmu.EnterInitializationMode();
         fmu.ExitInitializationMode();
@@ -47,6 +48,7 @@ public class DroneMovement : MonoBehaviour
     //General clean up
     void OnDestroy()
     {
+        fmu.FreeInstance();
         fmu.Dispose();
     }
 
