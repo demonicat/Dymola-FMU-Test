@@ -34,6 +34,7 @@ public class DroneMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        //Set desired coordinates into the FMU
         print("X: " + xcoord + " Y: " +  ycoord + " Z: " + zcoord);
         setCoord(); 
 
@@ -55,6 +56,8 @@ public class DroneMovement : MonoBehaviour
         fmu.SetReal("ycoord", zcoord);
     }
 
+
+    //Movement Commands
     void decreaseX()
     {
         xcoord -= (float)0.01;
@@ -75,6 +78,8 @@ public class DroneMovement : MonoBehaviour
         ycoord += (float)0.01;
     }
 
+
+    //Controller enable
     void OnEnable()
     {
         inputActions.Gameplay.Enable();
