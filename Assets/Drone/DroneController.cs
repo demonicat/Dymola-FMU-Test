@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/DroneController.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Drone/DroneController.inputactions'
 
 using System;
 using System.Collections;
@@ -20,7 +20,7 @@ public class @DroneController : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""X_Neg"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""fa2d4588-f645-4a85-9f93-3a632deade5b"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
@@ -28,7 +28,7 @@ public class @DroneController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""X_Pos"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""a26d5dd4-1bd5-4e0c-b581-eeb9f00cb8d0"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
@@ -36,7 +36,7 @@ public class @DroneController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Y_Neg"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""cac0dad2-5f8a-4e60-a667-8c60dd9285a7"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
@@ -44,8 +44,24 @@ public class @DroneController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Y_Pos"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""05b16ab4-e6eb-408d-aee8-563667c4c141"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Z_Pos"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""0813fc62-35b1-48bf-b679-d49137de94f7"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Z_Neg"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""5dff8174-b71e-4529-9bfe-a68fc8c33454"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -95,6 +111,28 @@ public class @DroneController : IInputActionCollection, IDisposable
                     ""action"": ""Y_Pos"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2eb17a19-3e10-4c84-9040-0f569193253c"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Z_Pos"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef644c3d-eb64-43bc-9e0b-fccce550be3d"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Z_Neg"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -119,6 +157,8 @@ public class @DroneController : IInputActionCollection, IDisposable
         m_Gameplay_X_Pos = m_Gameplay.FindAction("X_Pos", throwIfNotFound: true);
         m_Gameplay_Y_Neg = m_Gameplay.FindAction("Y_Neg", throwIfNotFound: true);
         m_Gameplay_Y_Pos = m_Gameplay.FindAction("Y_Pos", throwIfNotFound: true);
+        m_Gameplay_Z_Pos = m_Gameplay.FindAction("Z_Pos", throwIfNotFound: true);
+        m_Gameplay_Z_Neg = m_Gameplay.FindAction("Z_Neg", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -172,6 +212,8 @@ public class @DroneController : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_X_Pos;
     private readonly InputAction m_Gameplay_Y_Neg;
     private readonly InputAction m_Gameplay_Y_Pos;
+    private readonly InputAction m_Gameplay_Z_Pos;
+    private readonly InputAction m_Gameplay_Z_Neg;
     public struct GameplayActions
     {
         private @DroneController m_Wrapper;
@@ -180,6 +222,8 @@ public class @DroneController : IInputActionCollection, IDisposable
         public InputAction @X_Pos => m_Wrapper.m_Gameplay_X_Pos;
         public InputAction @Y_Neg => m_Wrapper.m_Gameplay_Y_Neg;
         public InputAction @Y_Pos => m_Wrapper.m_Gameplay_Y_Pos;
+        public InputAction @Z_Pos => m_Wrapper.m_Gameplay_Z_Pos;
+        public InputAction @Z_Neg => m_Wrapper.m_Gameplay_Z_Neg;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -201,6 +245,12 @@ public class @DroneController : IInputActionCollection, IDisposable
                 @Y_Pos.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnY_Pos;
                 @Y_Pos.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnY_Pos;
                 @Y_Pos.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnY_Pos;
+                @Z_Pos.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnZ_Pos;
+                @Z_Pos.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnZ_Pos;
+                @Z_Pos.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnZ_Pos;
+                @Z_Neg.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnZ_Neg;
+                @Z_Neg.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnZ_Neg;
+                @Z_Neg.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnZ_Neg;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -217,6 +267,12 @@ public class @DroneController : IInputActionCollection, IDisposable
                 @Y_Pos.started += instance.OnY_Pos;
                 @Y_Pos.performed += instance.OnY_Pos;
                 @Y_Pos.canceled += instance.OnY_Pos;
+                @Z_Pos.started += instance.OnZ_Pos;
+                @Z_Pos.performed += instance.OnZ_Pos;
+                @Z_Pos.canceled += instance.OnZ_Pos;
+                @Z_Neg.started += instance.OnZ_Neg;
+                @Z_Neg.performed += instance.OnZ_Neg;
+                @Z_Neg.canceled += instance.OnZ_Neg;
             }
         }
     }
@@ -236,5 +292,7 @@ public class @DroneController : IInputActionCollection, IDisposable
         void OnX_Pos(InputAction.CallbackContext context);
         void OnY_Neg(InputAction.CallbackContext context);
         void OnY_Pos(InputAction.CallbackContext context);
+        void OnZ_Pos(InputAction.CallbackContext context);
+        void OnZ_Neg(InputAction.CallbackContext context);
     }
 }
