@@ -12,21 +12,24 @@ public class DroneMovement : MonoBehaviour
     float xcoord, ycoord, zcoord = 0; 
     float xdir, ydir, zdir;
     float left_stick_left, left_stick_right, left_stick_up, left_stick_down, right_stick_up, right_stick_down = 0;
-    [SerializeField] float gain = (float)0.2; 
+    [SerializeField] float gain = (float)5;
+    const int targetFPS = 100;
 
     void Awake()
     {
-
+        Application.targetFrameRate = targetFPS;
         inputActions = new DroneController();
         OnEnable();
         ProcessInput();
 
         //Instantiate the FMU
-        fmu = new FMU("DroneSimulation_IdealMachine", name);
+        fmu = new FMU("Opt_Ideal1", name);
         fmu.Reset();
         fmu.SetupExperiment(Time.time);
         fmu.EnterInitializationMode();
         fmu.ExitInitializationMode();
+        //float samplePeriod = 1 / (float) targetFPS;
+        //fmu.SetReal("controlModule_Synchronous.samplePeriod", samplePeriod);
 
     }
 
@@ -49,7 +52,8 @@ public class DroneMovement : MonoBehaviour
     void FixedUpdate()
     {
         setCoord();
-        print("X: " + xcoord + " Y: " +  ycoord + " Z: " + zcoord);
+        //print("X: " + xcoord + " Y: " +  ycoord + " Z: " + zcoord);
+        //print(fmu.GetReal("controlModule_Synchronous.samplePeriod"));
 
         //Synchronize the model with the current time
         fmu.DoStep(Time.time, Time.deltaTime);
