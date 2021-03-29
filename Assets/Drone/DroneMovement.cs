@@ -13,7 +13,7 @@ public class DroneMovement : MonoBehaviour
     float xdir, ydir, zdir;
     float left_stick_left, left_stick_right, left_stick_up, left_stick_down, right_stick_up, right_stick_down = 0;
     [SerializeField] float gain = (float)5;
-    const int targetFPS = 100;
+    const int targetFPS = 300;
 
     void Awake()
     {
@@ -52,7 +52,7 @@ public class DroneMovement : MonoBehaviour
     void FixedUpdate()
     {
         setCoord();
-        //print("X: " + xcoord + " Y: " +  ycoord + " Z: " + zcoord);
+        print("X: " + xcoord + " Y: " +  ycoord + " Z: " + zcoord);
         //print(fmu.GetReal("controlModule_Synchronous.samplePeriod"));
 
         //Synchronize the model with the current time
